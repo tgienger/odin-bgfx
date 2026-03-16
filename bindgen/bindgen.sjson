@@ -1,0 +1,57 @@
+inputs = [
+    "bgfx/include/bgfx/c99/bgfx.h"
+]
+
+clang_include_paths = [
+    "/usr/include",
+    "/usr/lib/clang/21/include",
+    "/home/kilrain/projects/odin-c-bindgen/bgfx/bx/include",
+    "/home/kilrain/projects/odin-c-bindgen/bgfx/bimg/include",
+    "/home/kilrain/projects/odin-c-bindgen/bgfx/bgfx/include"
+]
+
+clang_defines = {
+    "UINT64_C(x)" = "(x)"
+}
+
+output_folder = "bgfx_odin"
+package_name = "bgfx"
+imports_file = "imports.odin"
+
+remove_type_prefix = "bgfx_"
+remove_macro_prefix = "bgfx_"
+remove_function_prefix = "bgfx_"
+
+type_overrides = {
+    "bgfx_dynamic_index_buffer_handle_s" = "distinct u16",
+    "bgfx_dynamic_vertex_buffer_handle_s" = "distinct u16",
+    "bgfx_frame_buffer_handle_s" = "distinct u16",
+    "bgfx_index_buffer_handle_s" = "distinct u16",
+    "bgfx_indirect_buffer_handle_s" = "distinct u16",
+    "bgfx_occlusion_query_handle_s" = "distinct u16",
+    "bgfx_program_handle_s" = "distinct u16",
+    "bgfx_shader_handle_s" = "distinct u16",
+    "bgfx_texture_handle_s" = "distinct u16",
+    "bgfx_uniform_handle_s" = "distinct u16",
+    "bgfx_vertex_buffer_handle_s" = "distinct u16",
+    "bgfx_vertex_layout_handle_s" = "distinct u16"
+}
+
+struct_field_overrides = {
+    "Memory.data" = "[^]",
+    "TransientIndexBuffer.data" = "[^]",
+    "TransientVertexBuffer.data" = "[^]",
+    "InstanceDataBuffer.data" = "[^]",
+    "TextureInfo.handle" = "[^]",
+    "VertexLayout.attr" = "[^]",
+    "Init.allocator" = "[^]",
+    "Init.cacheEntries" = "[^]",
+    "Caps.gpu" = "[^]"
+}
+
+enumify_macros = {
+    "BGFX_FRAME_" = "Frame"
+}
+
+procedures_at_end = true
+
